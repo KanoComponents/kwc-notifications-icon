@@ -1,9 +1,9 @@
-# \<kwc-notifcations-icon\>
+# \<kwc-notifications-icon\>
 
 To show notifications status and an overview of notifications.
 
  - What is it called?
-     - kwc-notifcations-icon
+     - kwc-notifications-icon
  - What is it made out of?
      - Describe here the contents of this component
  - What variants are needed?

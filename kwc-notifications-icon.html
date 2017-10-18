@@ -1,0 +1,219 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../web-components/kano-drop-down/kano-drop-down.html">
+<link rel="import" href="../kwc-icons/kwc-icons.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+<!--
+`kwc-notifications-icon`
+To show notifications status and an overview of notifications.
+
+@demo demo/index.html
+-->
+
+<dom-module id="kwc-notifications-icon">
+    <template>
+        <style>
+            :host {
+                display: block;
+                @apply --layout-horizontal;
+                @apply --layout-center;
+                @apply --layout-justified;
+                position: relative;
+            }
+            :host .summary {
+                position: relative;
+            }
+            :host .count {
+                background-color: var(--color-flamingo);
+                border: 2px solid white;
+                border-radius: 4px;
+                color: white;
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: bold;
+                height: 18px;
+                left: -8px;
+                line-height: 18px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                text-align: center;
+                top: -8px;
+                transition: opacity 0.3s ease;
+                width: 18px;
+            }
+            :host .icon-wrapper {
+                @apply --layout-horizontal;
+                @apply --layout-center;
+                @apply --layout-center-justified;
+                background-color: var(--color-stone);
+                border-radius: 100%;
+                color: white;
+                height: 32px;
+                line-height: 32px;
+                overflow: hidden;
+                text-align: center;
+                transition: background-color 0.3s ease;
+                width: 32px;
+            }
+            :host([active]) .icon-wrapper {
+                background-color: var(--color-flamingo);
+                cursor: pointer;
+            }
+            :host([active]) .count {
+                opacity: 1;
+            }
+            :host([focused]) .icon-wrapper {
+                background-color: var(--color-cinnabar);
+                cursor: pointer;
+            }
+            :host kano-drop-down {
+                position: absolute;
+                right: -16px;
+                top: 100%;
+                width: 300px;
+            }
+            :host .dropdown-header,
+            :host .dropdown-footer {
+                @apply --layout-horizontal;
+                @apply --layout-center;
+                @apply --layout-justified;
+                box-shadow: 0 0 4px var(--color-black);
+                padding: 16px;
+                position: relative;
+                z-index: 10;
+            }
+            :host h3 {
+                color: var(--color-black);
+                font-size: 16px;
+                margin: 0;
+            }
+            :host button {
+                background: transparent;
+                border: 0;
+                color: var(--color-grey);
+                cursor: pointer;
+                font-family: var(--font-body);
+                font-size: 16px;
+                font-weight: bold;
+                padding: 0;
+            }
+            :host button:hover {
+                color: var(--color-black);
+            }
+            :host button:focus {
+                outline: 0;
+            }
+            :host .dropdown-footer button {
+                width: 100%;
+            }
+            :host .dropdown-notifications {
+                background-color: var(--color-porcelain);
+                color: var(--color-black);
+            }
+            :host .notifcation {
+                @apply --layout-horizontal;
+                @apply --layout-center;
+                @apply --layout-start-justified;
+                cursor: pointer;
+                font-weight: bold;
+                padding: 8px 16px;
+            }
+            :host .notifcation:first-of-type {
+                padding-top: 16px;
+            }
+            :host .notifcation:last-of-type {
+                padding-bottom: 16px;
+            }
+            :host .notifcation:hover {
+                background-color: var(--color-stone);
+            }
+        </style>
+        <div class="summary" on-click="_toggle">
+            <div class="icon-wrapper">
+                <iron-icon icon="kwc-ui-icons:notifcications"></iron-icon>
+            </div>
+            <div class="count">
+                [[unreadCount]]
+            </div>
+        </div>
+        <kano-drop-down id="dropdown" caret-align="right">
+            <div class="dropdown-header">
+                <h3>Notifications</h3>
+                <button type="button" on-tap="_readAllNotifications">
+                    Mark all as read
+                </button>
+            </div>
+            <div class="dropdown-notifications">
+                <template is="dom-repeat" items="[[unreadNotifications]]">
+                    <div class="notifcation" on-tap="_notificationSelected">
+                        <iron-pages selected="[[item.category]]" attr-for-selected="name" class="notification-icon">
+                            <iron-icon icon="kwc-icons:creation" name="shares" class="icon shares"></iron-icon>
+                            <iron-icon icon="kwc-icons:like" name="likes" class="icon likes"></iron-icon>
+                            <iron-icon icon="navbar-icons:users" name="follows" class="icon follows"></iron-icon>
+                            <iron-icon icon="kwc-icons:comment" name="comments" class="icon comments"></iron-icon>
+                            <iron-icon icon="kwc-icons:medal" name="gamification" class="icon gamification"></iron-icon>
+                        </iron-pages>
+                        <span class="notifcation-title">[[item.title]]</span>
+                    </div>
+                </template>
+            </div>
+            <div class="dropdown-footer">
+                <button type="button" on-tap="_viewAllNotifications">
+                    See all notifications
+                </button>
+            </div>
+        </kano-drop-down>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'kwc-notifications-icon',
+            properties: {
+                active: {
+                    type: Boolean,
+                    computed: '_computeActive(unreadCount)',
+                    reflectToAttribute: true
+                },
+                focused: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true
+                },
+                unreadCount: {
+                    type: Number,
+                    value: 0
+                },
+                unreadNotifications: {
+                    type: Array,
+                    value: () => []
+                }
+            },
+            _close () {
+                this.focused = false;
+                this.$.dropdown.close();
+            },
+            _computeActive (unreadCount) {
+                return unreadCount ? true : false;
+            },
+            _notificationSelected (e) {
+                this.fire('notification-selected', e.model.item);
+                this._close();
+            },
+            _readAllNotifications () {
+                this.fire('read-all-notifications');
+                this._close();
+            },
+            _toggle () {
+                if (this.active) {
+                    this.focused = !this.focused;
+                    this.$.dropdown.toggle();
+                }
+            },
+            _viewAllNotifications () {
+                this.fire('view-all-notifications');
+                this._close();
+            }
+        });
+    </script>
+</dom-module>
