@@ -1,7 +1,9 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../web-components/kano-drop-down/kano-drop-down.html">
-<link rel="import" href="../kwc-icons/kwc-icons.html">
+<link rel="import" href="../kwc-style/kwc-style.html">
+<link rel="import" href="../kwc-icons/kwc-ui-icons.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="./kwc-notification.html">
 
 <!--
 `kwc-notifications-icon`
@@ -56,6 +58,10 @@ To show notifications status and an overview of notifications.
                 transition: background-color 0.3s ease;
                 width: 32px;
             }
+            :host iron-icon {
+                height: 16px;
+                width: 16px;
+            }
             :host([active]) .icon-wrapper {
                 background-color: var(--color-flamingo);
                 cursor: pointer;
@@ -78,7 +84,7 @@ To show notifications status and an overview of notifications.
                 @apply --layout-horizontal;
                 @apply --layout-center;
                 @apply --layout-justified;
-                box-shadow: 0 0 4px var(--color-black);
+                box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
                 padding: 16px;
                 position: relative;
                 z-index: 10;
@@ -111,27 +117,19 @@ To show notifications status and an overview of notifications.
                 background-color: var(--color-porcelain);
                 color: var(--color-black);
             }
-            :host .notifcation {
-                @apply --layout-horizontal;
-                @apply --layout-center;
-                @apply --layout-start-justified;
-                cursor: pointer;
-                font-weight: bold;
-                padding: 8px 16px;
-            }
-            :host .notifcation:first-of-type {
+            :host kwc-notification:first-of-type {
                 padding-top: 16px;
             }
-            :host .notifcation:last-of-type {
+            :host kwc-notification:last-of-type {
                 padding-bottom: 16px;
             }
-            :host .notifcation:hover {
+            :host kwc-notification:hover {
                 background-color: var(--color-stone);
             }
         </style>
         <div class="summary" on-click="_toggle">
             <div class="icon-wrapper">
-                <iron-icon icon="kwc-ui-icons:notifcications"></iron-icon>
+                <iron-icon icon="kwc-ui-icons:notification"></iron-icon>
             </div>
             <div class="count">
                 [[unreadCount]]
@@ -146,16 +144,8 @@ To show notifications status and an overview of notifications.
             </div>
             <div class="dropdown-notifications">
                 <template is="dom-repeat" items="[[unreadNotifications]]">
-                    <div class="notifcation" on-tap="_notificationSelected">
-                        <iron-pages selected="[[item.category]]" attr-for-selected="name" class="notification-icon">
-                            <iron-icon icon="kwc-icons:creation" name="shares" class="icon shares"></iron-icon>
-                            <iron-icon icon="kwc-icons:like" name="likes" class="icon likes"></iron-icon>
-                            <iron-icon icon="navbar-icons:users" name="follows" class="icon follows"></iron-icon>
-                            <iron-icon icon="kwc-icons:comment" name="comments" class="icon comments"></iron-icon>
-                            <iron-icon icon="kwc-icons:medal" name="gamification" class="icon gamification"></iron-icon>
-                        </iron-pages>
-                        <span class="notifcation-title">[[item.title]]</span>
-                    </div>
+                    <kwc-notification notification="[[item]]" on-tap="_notificationSelected">
+                    </kwc-notification>
                 </template>
             </div>
             <div class="dropdown-footer">
