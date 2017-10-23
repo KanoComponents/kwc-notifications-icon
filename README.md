@@ -1,21 +1,9 @@
-# \<kwc-notifcations-icon\>
+# \<kwc-notifications-icon\>
 
 To show notifications status and an overview of notifications.
 
- - What is it called?
-     - kwc-notifcations-icon
- - What is it made out of?
-     - Describe here the contents of this component
- - What variants are needed?
-     - Variant 1:
-     - Variant 2:
-     - Variant 3:
- - How does it scale?
-     - Desktop: ...
-     - Mobile: ...
- - What style variables are in use?
-     - Style 1: ...
-     - Style 2: ...
+## TO-DO:
+* Add further tests, particularly for clicking and opening the element, and firing the events.
 
 ## Installation
 Clone this repository.

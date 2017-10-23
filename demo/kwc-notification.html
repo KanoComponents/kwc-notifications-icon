@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>kwc-notifications-icon demo</title>
+
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+        <link rel="import" href="../kwc-notification.html">
+
+        <custom-style>
+            <style is="custom-style" include="demo-pages-shared-styles">
+            </style>
+        </custom-style>
+    </head>
+    <body>
+        <div class="vertical-section-container centered">
+            <h3>Basic kwc-notifications-icon demo</h3>
+            <demo-snippet>
+                <template>
+                    <kwc-notification id="shares"></kwc-notification>
+                    <kwc-notification id="likes"></kwc-notification>
+                    <kwc-notification id="follows"></kwc-notification>
+                    <kwc-notification id="comments"></kwc-notification>
+                    <kwc-notification id="gamification"></kwc-notification>
+                    <kwc-notification id="updates"></kwc-notification>
+                </template>
+            </demo-snippet>
+            <script>
+                document.addEventListener('WebComponentsReady', () => {
+                    var shares = document.querySelector('#shares'),
+                        likes = document.querySelector('#likes');
+                        follows = document.querySelector('#follows');
+                        comments = document.querySelector('#comments');
+                        gamification = document.querySelector('#gamification');
+                        updates = document.querySelector('#updates');  
+                    shares.notification = {
+                        title: 'Someone shared',
+                        category: 'shares'
+                    };
+                    likes.notification = {
+                        title: 'Someone liked',
+                        category: 'likes'
+                    };
+                    follows.notification = {
+                        title: 'Someone followed',
+                        category: 'follows'
+                    };
+                    comments.notification = {
+                        title: 'Someone commented',
+                        category: 'comments'
+                    };
+                    gamification.notification = {
+                        title: 'You got a medal',
+                        category: 'gamification'
+                    };
+                    updates.notification = {
+                        title: 'Kano made an announcement',
+                        category: 'updates'
+                    };
+                });
+            </script>
+        </div>
+    </body>
+</html>
