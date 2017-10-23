@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>kwc-notifications-icon demo</title>
+
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+        <link rel="import" href="../kwc-notifications-icon.html">
+
+        <custom-style>
+            <style is="custom-style" include="demo-pages-shared-styles">
+                kwc-notifications-icon {
+                    z-index: 100;
+                }
+            </style>
+        </custom-style>
+    </head>
+    <body>
+        <div class="vertical-section-container centered">
+            <h3>Basic kwc-notifications-icon demo</h3>
+            <demo-snippet>
+                <template>
+                    <kwc-notifications-icon></kwc-notifications-icon>
+                </template>
+            </demo-snippet>
+            <script>
+                document.addEventListener('WebComponentsReady', () => {
+                    var notifications = document.querySelector('kwc-notifications-icon');
+                    notifications.unreadNotifications = [{
+                        title: 'Someone shared',
+                        category: 'shares'
+                    }, {
+                        title: 'Someone liked',
+                        category: 'likes'
+                    }, {
+                        title: 'Someone followed you',
+                        category: 'follows'
+                    }, {
+                        title: 'Someone commented',
+                        category: 'comments'
+                    }, {
+                        title: 'You got a medal',
+                        category: 'gamification'
+                    }, {
+                        title: 'Kano made an announcement',
+                        category: 'updates'
+                    }];
+                    notifications.unreadCount = 4;
+                });
+            </script>
+        </div>
+    </body>
+</html>

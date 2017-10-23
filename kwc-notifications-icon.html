@@ -9,18 +9,20 @@
 `kwc-notifications-icon`
 To show notifications status and an overview of notifications.
 
-@demo demo/index.html
+@demo demo/kwc-notifications-icon.html
 -->
 
 <dom-module id="kwc-notifications-icon">
     <template>
         <style>
             :host {
-                display: block;
                 @apply --layout-horizontal;
                 @apply --layout-center;
                 @apply --layout-justified;
+                display: block;
+                height: 32px;
                 position: relative;
+                width: 32px;
             }
             :host .summary {
                 position: relative;
@@ -62,21 +64,21 @@ To show notifications status and an overview of notifications.
                 height: 16px;
                 width: 16px;
             }
-            :host([active]) .icon-wrapper {
+            :host([_active]) .icon-wrapper {
                 background-color: var(--color-flamingo);
                 cursor: pointer;
             }
-            :host([active]) .count {
+            :host([_active]) .count {
                 opacity: 1;
             }
-            :host([focused]) .icon-wrapper {
+            :host([_focused]) .icon-wrapper {
                 background-color: var(--color-cinnabar);
                 cursor: pointer;
             }
             :host kano-drop-down {
                 position: absolute;
                 right: -16px;
-                top: 100%;
+                top: 150%;
                 width: 300px;
             }
             :host .dropdown-header,
@@ -87,6 +89,7 @@ To show notifications status and an overview of notifications.
                 box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
                 padding: 16px;
                 position: relative;
+                width: 300px;
                 z-index: 10;
             }
             :host h3 {
@@ -160,46 +163,81 @@ To show notifications status and an overview of notifications.
         Polymer({
             is: 'kwc-notifications-icon',
             properties: {
-                active: {
+                /**
+                 * Toggle to indicate whether the component is active,
+                 * ie. that there are unread notifications.
+                 */
+               _active: {
                     type: Boolean,
                     computed: '_computeActive(unreadCount)',
                     reflectToAttribute: true
                 },
-                focused: {
+                /**
+                 * Toggle to indicate whether the notifications are currently
+                 * selected by the user.
+                 */
+                _focused: {
                     type: Boolean,
                     value: false,
                     reflectToAttribute: true
                 },
+                /** The number of unread notifications */
                 unreadCount: {
                     type: Number,
                     value: 0
                 },
+                /**
+                 * An array of unread notifications, in the format:
+                 * ```
+                 * {
+                 *      title: String,
+                 *      category: String,
+                 *      ...
+                 * }
+                 * ```
+                 */
                 unreadNotifications: {
                     type: Array,
                     value: () => []
                 }
             },
+            /** Close the dropdown and defocus the component */
             _close () {
-                this.focused = false;
+                this._focused = false;
                 this.$.dropdown.close();
             },
+            /**
+             * Compute whether the component is active, ie. the are unread
+             * notifications.
+             * @param {Number} unreadCount
+             * @return {Boolean}
+             */
             _computeActive (unreadCount) {
                 return unreadCount ? true : false;
             },
+            /** Fire an event to select a notification & close the component */
             _notificationSelected (e) {
                 this.fire('notification-selected', e.model.item);
                 this._close();
             },
+            /**
+             * Fire an event to mark all notifications as read
+             * & close the component.
+             */
             _readAllNotifications () {
                 this.fire('read-all-notifications');
                 this._close();
             },
+            /** Toggle the status of the component and the dropdown */
             _toggle () {
-                if (this.active) {
-                    this.focused = !this.focused;
+                if (this._active) {
+                    this._focused = !this._focused;
                     this.$.dropdown.toggle();
                 }
             },
+            /**
+             * Fire an event to view all notifications & close the component.
+             */
             _viewAllNotifications () {
                 this.fire('view-all-notifications');
                 this._close();
