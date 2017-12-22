@@ -8,7 +8,8 @@
     "kwc-icons": "git@github.com:KanoComponents/kwc-icons.git",
     "kwc-icons": "git@github.com:KanoComponents/kwc-style.git",
     "iron-flex-layout": "^2.0.0",
-    "iron-pages": "^2.0.0"
+    "iron-pages": "^2.0.0",
+    "iron-icon": "^2.0.1"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
@@ -22,7 +23,6 @@
     "iron-doc-viewer": "^1.0.1",
     "paper-button": "^2.0.0",
     "iron-flex-layout": "^2.0.0",
-    "iron-icon": "^2.0.1",
     "iron-iconset-svg": "^2.1.0",
     "iron-location": "^0.8.0",
     "webcomponentsjs": "^0.7.24"
