@@ -71,7 +71,7 @@ To show notifications status and an overview of notifications.
             :host([_active]) .count {
                 opacity: 1;
             }
-            :host([_focused]) .icon-wrapper {
+            :host([focused]) .icon-wrapper {
                 background-color: var(--color-cinnabar);
                 cursor: pointer;
             }
@@ -176,7 +176,7 @@ To show notifications status and an overview of notifications.
                  * Toggle to indicate whether the notifications are currently
                  * selected by the user.
                  */
-                _focused: {
+                focused: {
                     type: Boolean,
                     value: false,
                     reflectToAttribute: true
@@ -202,9 +202,10 @@ To show notifications status and an overview of notifications.
                 }
             },
             /** Close the dropdown and defocus the component */
-            _close () {
-                this._focused = false;
+            close () {
+                this.focused = false;
                 this.$.dropdown.close();
+                this.fire('notification-dropdown-closed');
             },
             /**
              * Compute whether the component is active, ie. the are unread
@@ -218,7 +219,7 @@ To show notifications status and an overview of notifications.
             /** Fire an event to select a notification & close the component */
             _notificationSelected (e) {
                 this.fire('notification-selected', e.model.item);
-                this._close();
+                this.close();
             },
             /**
              * Fire an event to mark all notifications as read
@@ -226,21 +227,24 @@ To show notifications status and an overview of notifications.
              */
             _readAllNotifications () {
                 this.fire('read-all-notifications');
-                this._close();
+                this.close();
             },
             /** Toggle the status of the component and the dropdown */
             _toggle () {
+                let eventType;
                 if (this._active) {
-                    this._focused = !this._focused;
+                    this.focused = !this.focused;
                     this.$.dropdown.toggle();
                 }
+                eventType = this.focused ? 'opened' : 'closed';
+                this.fire(`notification-dropdown-${eventType}`);
             },
             /**
              * Fire an event to view all notifications & close the component.
              */
             _viewAllNotifications () {
                 this.fire('view-all-notifications');
-                this._close();
+                this.close();
             }
         });
     </script>
