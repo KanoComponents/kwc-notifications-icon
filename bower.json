@@ -5,7 +5,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.9.0",
     "web-components": "git@github.com:KanoComputing/web-components.git#master",
-    "kwc-icons": "git@github.com:KanoComponents/kwc-style.git",
+    "kwc-icons": "git@github.com:KanoComponents/kwc-icons.git",
     "iron-flex-layout": "^2.0.0",
     "iron-pages": "^2.0.0",
     "iron-icon": "^2.0.1"
