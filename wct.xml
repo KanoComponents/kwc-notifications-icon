@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<testsuites>
+	<testsuite errors="0" failures="0" name="test/kwc-notifications-icon_test.html (chrome 63)" skipped="0" tests="6">
+		<testcase name="kwc-notifications-icon; instantiating the element works" time="0"/>
+		<testcase name="kwc-notifications-icon; the unread count should be 0 by default" time="0"/>
+		<testcase name="kwc-notifications-icon; the unread-notifications should be an empty array by default" time="2"/>
+		<testcase name="kwc-notifications-icon; it should not be focused by default" time="0"/>
+		<testcase name="kwc-notifications-icon; it should be inactive when the unread-count is 0" time="1"/>
+		<testcase name="kwc-notifications-icon; it should be inactive when the unread-count is greater than 0" time="0"/>
+	</testsuite>
+	<testsuite errors="0" failures="0" name="test/kwc-notifications-icon_test.html (firefox 56)" skipped="0" tests="6">
+		<testcase name="kwc-notifications-icon; instantiating the element works" time="1"/>
+		<testcase name="kwc-notifications-icon; the unread count should be 0 by default" time="0"/>
+		<testcase name="kwc-notifications-icon; the unread-notifications should be an empty array by default" time="2"/>
+		<testcase name="kwc-notifications-icon; it should not be focused by default" time="1"/>
+		<testcase name="kwc-notifications-icon; it should be inactive when the unread-count is 0" time="0"/>
+		<testcase name="kwc-notifications-icon; it should be inactive when the unread-count is greater than 0" time="0"/>
+	</testsuite>
+</testsuites>
