@@ -10,6 +10,10 @@
 `kwc-notifications-icon`
 To show notifications status and an overview of notifications.
 
+Custom property | Description | Default
+----------------|-------------|----------
+`--kwc-notifications-icon-dropdown-width` | The width of the dropdown | `300px`
+
 @demo demo/kwc-notifications-icon.html
 -->
 
@@ -80,7 +84,7 @@ To show notifications status and an overview of notifications.
                 position: absolute;
                 right: -16px;
                 top: 150%;
-                width: 300px;
+                width: var(--kwc-notifications-icon-dropdown-width, 300px);
             }
             :host .dropdown-header,
             :host .dropdown-footer {
@@ -90,7 +94,7 @@ To show notifications status and an overview of notifications.
                 box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
                 padding: 16px;
                 position: relative;
-                width: 300px;
+                width: var(--kwc-notifications-icon-dropdown-width, 300px);
                 z-index: 10;
             }
             :host h3 {
