@@ -4,11 +4,12 @@
   "main": "kwc-notifications-icon.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.6.0",
-    "web-components": "git@github.com:KanoComputing/web-components.git#master",
+    "web-components": "KanoComputing/web-components#^2.0.2",
     "kwc-icons": "git@github.com:KanoComponents/kwc-icons.git",
     "iron-flex-layout": "^2.0.0",
     "iron-pages": "^2.0.0",
-    "iron-icon": "^2.0.1"
+    "iron-icon": "^2.0.1",
+    "kwc-style": "KanoComponents/kwc-style#^2.0.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^2.0.0",
@@ -20,6 +21,8 @@
     "iron-component-page": "^3.0.1",
     "webcomponentsjs": "^v1.1.0",
     "polymer": "^2.6.0",
-    "iron-doc-viewer": "^3.0.0"
+    "iron-doc-viewer": "^3.0.0",
+    "web-components": "^2.0.2",
+    "kwc-style": "^2.0.0"
   }
 }
