@@ -3,28 +3,26 @@
   "description": "To show notifications status and an overview of notifications.",
   "main": "kwc-notifications-icon.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.9.0",
-    "web-components": "git@github.com:KanoComputing/web-components.git#master",
+    "polymer": "Polymer/polymer#^2.6.0",
+    "web-components": "KanoComputing/web-components#^2.0.2",
     "kwc-icons": "git@github.com:KanoComponents/kwc-icons.git",
     "iron-flex-layout": "^2.0.0",
     "iron-pages": "^2.0.0",
-    "iron-icon": "^2.0.1"
+    "iron-icon": "^2.0.1",
+    "kwc-style": "KanoComponents/kwc-style#^2.0.0"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^2.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.1.0"
   },
   "resolutions": {
-    "polymer": "^1.9.0",
-    "iron-component-page": "^1.0.0",
-    "iron-doc-viewer": "^1.0.1",
-    "paper-button": "^2.0.0",
-    "iron-flex-layout": "^2.0.0",
-    "iron-iconset-svg": "^2.1.0",
-    "iron-location": "^0.8.0",
-    "webcomponentsjs": "^0.7.24",
-    "iron-icon": "^2.0.1"
+    "iron-component-page": "^3.0.1",
+    "webcomponentsjs": "^v1.1.0",
+    "polymer": "^2.6.0",
+    "iron-doc-viewer": "^3.0.0",
+    "web-components": "^2.0.2",
+    "kwc-style": "^2.0.0"
   }
 }
