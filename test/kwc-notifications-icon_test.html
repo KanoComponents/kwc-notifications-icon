@@ -6,10 +6,10 @@
 
         <title>kwc-notifications-icon test</title>
 
-        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-        <script src="../../web-component-tester/browser.js"></script>
+        <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+        <script src="../../../wct-browser-legacy/browser.js"></script>
 
-        <link rel="import" href="../kwc-notifications-icon.html">
+        <script type="module" src="../kwc-notifications-icon.js"></script>
     </head>
     <body>
         <test-fixture id="basic">
@@ -24,64 +24,65 @@
             </template>
         </test-fixture>
 
-        <script>
-            suite('kwc-notifications-icon', function () {
-                var basic,
-                    populated,
-                    unreadCount = '6',
-                    notifications = [{
-                        title: 'Someone shared',
-                        category: 'shares'
-                    }, {
-                        title: 'Someone liked',
-                        category: 'likes'
-                    }, {
-                        title: 'Someone followed you',
-                        category: 'follows'
-                    }, {
-                        title: 'Someone commented',
-                        category: 'comments'
-                    }, {
-                        title: 'You got a medal',
-                        category: 'gamification'
-                    }, {
-                        title: 'Kano made an announcement',
-                        category: 'updates'
-                    }];
+        <script type="module">
+import '../kwc-notifications-icon.js';
+suite('kwc-notifications-icon', function () {
+    var basic,
+        populated,
+        unreadCount = '6',
+        notifications = [{
+            title: 'Someone shared',
+            category: 'shares'
+        }, {
+            title: 'Someone liked',
+            category: 'likes'
+        }, {
+            title: 'Someone followed you',
+            category: 'follows'
+        }, {
+            title: 'Someone commented',
+            category: 'comments'
+        }, {
+            title: 'You got a medal',
+            category: 'gamification'
+        }, {
+            title: 'Kano made an announcement',
+            category: 'updates'
+        }];
 
-                setup(function () {
-                    basic = fixture('basic');
-                    populated = fixture('populated');
-                    populated.unreadCount = unreadCount;
-                    populated.unreadNotifications = notifications;
-                });
+    setup(function () {
+        basic = fixture('basic');
+        populated = fixture('populated');
+        populated.unreadCount = unreadCount;
+        populated.unreadNotifications = notifications;
+    });
 
-                test('instantiating the element works', function () {
-                    assert.equal(basic.is, 'kwc-notifications-icon');
-                });
+    test('instantiating the element works', function () {
+        assert.equal(basic.is, 'kwc-notifications-icon');
+    });
 
-                test('the unread count should be 0 by default', function () {
-                    assert.equal(basic.unreadCount, 0);
-                });
+    test('the unread count should be 0 by default', function () {
+        assert.equal(basic.unreadCount, 0);
+    });
 
-                test('the unread-notifications should be an empty array by default', function () {
-                    assert.isArray(basic.unreadNotifications);
-                    assert.lengthOf(basic.unreadNotifications, 0);
-                });
+    test('the unread-notifications should be an empty array by default', function () {
+        assert.isArray(basic.unreadNotifications);
+        assert.lengthOf(basic.unreadNotifications, 0);
+    });
 
-                test('it should not be focused by default', function () {
-                    assert.equal(basic.focused, false);
-                });
+    test('it should not be focused by default', function () {
+        assert.equal(basic.focused, false);
+    });
 
-                test('it should be inactive when the unread-count is 0', function () {
-                    assert.equal(basic._active, false);
-                });
+    test('it should be inactive when the unread-count is 0', function () {
+        assert.equal(basic._active, false);
+    });
 
-                test('it should be inactive when the unread-count is greater than 0', function () {
-                    assert.equal(populated._active, true);
-                });
+    test('it should be inactive when the unread-count is greater than 0', function () {
+        assert.equal(populated._active, true);
+    });
 
-            });
-        </script>
+});
+</script>
     </body>
 </html>

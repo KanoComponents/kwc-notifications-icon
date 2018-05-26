@@ -10,3 +10,5 @@ Thumbs.db
 
 bower_components/
 wct.xml
+
+node_modules

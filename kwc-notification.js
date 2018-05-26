@@ -1,19 +1,25 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-pages/iron-pages.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../kwc-icons/kwc-icons.html">
-<link rel="import" href="../kwc-style/kwc-style.html">
-
-<!--
+/**
 `kwc-notification`
 A simple display for Kano notifications, with the correct icon.
 
 @demo demo/kwc-notification.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-<dom-module id="kwc-notification">
-    <template>
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/iron-pages/iron-pages.js';
+import '@polymer/iron-icon/iron-icon.js';
+import '@kano/kwc-icons/kwc-icons.js';
+import '@kano/kwc-style/kwc-style.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+Polymer({
+  _template: html`
         <style>
             :host {
                 @apply --layout-horizontal;
@@ -62,25 +68,23 @@ A simple display for Kano notifications, with the correct icon.
             <iron-icon icon="kwc-ui-icons:medal" name="gamification" class="icon gamification"></iron-icon>
         </iron-pages>
         <p class="title">[[notification.title]]</p>
-    </template>
-    <script>
-        Polymer({
-            is: 'kwc-notification',
-            properties: {
-                /**
-                 * The notification object in the format:
-                 * ```
-                 * {
-                 *      title: String,
-                 *      category: String,
-                 *      ...
-                 * }
-                 * ```
-                 */
-                notification: {
-                    type: Object
-                }
-            }
-        });
-    </script>
-</dom-module>
+`,
+
+  is: 'kwc-notification',
+
+  properties: {
+      /**
+       * The notification object in the format:
+       * ```
+       * {
+       *      title: String,
+       *      category: String,
+       *      ...
+       * }
+       * ```
+       */
+      notification: {
+          type: Object
+      }
+  }
+});

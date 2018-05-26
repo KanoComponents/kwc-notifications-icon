@@ -1,0 +1,28 @@
+{
+  "description": "To show notifications status and an overview of notifications.",
+  "name": "@kano/kwc-notifications-icon",
+  "version": "3.0.0-beta.2",
+  "resolutions": {
+    "inherits": "2.0.3",
+    "samsam": "1.1.3",
+    "supports-color": "3.1.2",
+    "type-detect": "1.0.0",
+    "@webcomponents/webcomponentsjs": "2.0.0-beta.2"
+  },
+  "main": "kwc-notifications-icon.js",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0",
+    "@kano/web-components": "3.0.0-beta.2",
+    "@kano/kwc-icons": "3.0.0-beta.2",
+    "@polymer/iron-flex-layout": "^3.0.0-pre.18",
+    "@polymer/iron-pages": "^3.0.0-pre.18",
+    "@polymer/iron-icon": "^3.0.0-pre.18",
+    "@kano/kwc-style": "3.0.0-beta.2"
+  },
+  "devDependencies": {
+    "@polymer/iron-component-page": "^3.0.0-pre.18",
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
+    "wct-browser-legacy": "^0.0.1-pre.11",
+    "@webcomponents/webcomponentsjs": "^2.0.0"
+  }
+}
